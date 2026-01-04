@@ -433,4 +433,54 @@ setInterval(updateTime, 1000);
 updateTime(); // Run immediately on load
 
 
+// 1. Initialize EmailJS with your Public Key
+(function() {
+    // REPLACE 'YOUR_PUBLIC_KEY' WITH THE REAL KEY FROM EMAILJS DASHBOARD
+    emailjs.init("nexaO4exyg3hi0GV_");
+})();
+
+const contactForm = document.getElementById('contact-form');
+const sendBtn = document.getElementById('sendBtn');
+const successMsg = document.getElementById('success-message');
+const modalTitle = document.querySelector('.modal-title');
+
+contactForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent standard page reload
+
+    // Change button text to show processing
+    sendBtn.innerText = "SENDING_DATA...";
+    sendBtn.style.opacity = "0.7";
+
+    // REPLACE 'YOUR_SERVICE_ID' AND 'YOUR_TEMPLATE_ID'
+    emailjs.sendForm('service_bofp8pn', 'template_2x8hoii', this)
+        .then(function() {
+            // SUCCESS:
+            console.log('SUCCESS!');
+            
+            // 1. Hide the form elements smoothly
+            gsap.to([contactForm, modalTitle], {
+                opacity: 0,
+                duration: 0.5,
+                display: "none",
+                onComplete: () => {
+                    // 2. Show the Success Message
+                    successMsg.style.display = "block";
+                    gsap.from(successMsg, {
+                        opacity: 0,
+                        y: 20,
+                        duration: 0.5
+                    });
+                }
+            });
+
+        }, function(error) {
+            // ERROR:
+            console.log('FAILED...', error);
+            sendBtn.innerText = "SENDING_FAILED";
+            sendBtn.style.backgroundColor = "red";
+            alert("System Error: Could not send message. Please try again.");
+        });
+});
+
+
 

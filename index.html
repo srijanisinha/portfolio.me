@@ -111,7 +111,7 @@
         <div class="tech-item">Hypothesis_Testing</div>
         <div class="tech-item">SQL</div>
         <div class="tech-item">Data_Visualization</div>
-        <div class="tech-item">TABLEAU</div>
+        <div class="tech-item">POWER BI</div>
         <div class="tech-item">A/B_Testing</div>
         <div class="tech-item">Descriptive_Statistics</div>
         <div class="tech-item">SCIKIT_LEARN</div>
@@ -278,21 +278,29 @@
     <div class="modal-overlay" id="modalOverlay">
     <div class="modal-content">
         <button class="close-btn" id="closeModal"><i class="ri-close-circle-fill"></i></button>
+
+        <div id="success-message" style="display: none; text-align: center;">
+        <h2 style="color: #00ff88; font-family: 'Courier New';">MESSAGE DELIVERED</h2>
+        <p style="color: #fff; margin-top: 10px;">Thank You !. I will respond to your message shortly.</p>
+    </div>
+
+
+        <form class="contact-form" id="contact-form">
         <h2 class="modal-title">Let's Get In Touch.</h2>
-        <form class="contact-form">
+
             <div class="input-group">
                 <label>NAME:</label>
-                <input type="text" placeholder="Your Name" required>
+                <input type="text" name="from_name" placeholder="Your Name" required>
             </div>
             <div class="input-group">
                 <label>MAIL ID:</label>
-                <input type="email" placeholder="email@domain.com" required>
+                <input name="reply_to" type="email" placeholder="email@domain.com" required>
             </div>
             <div class="input-group">
                 <label>MESSAGE:</label>
-                <textarea rows="4" placeholder="Type your message..."></textarea>
+                <textarea name="message" rows="4" placeholder="Type your message..."></textarea>
             </div>
-            <button type="submit" class="submit-btn">SEND MESSAGE</button>
+            <button type="submit" id="sendBtn" class="submit-btn">SEND MESSAGE</button>
         </form>
     </div>
 </div>
@@ -300,6 +308,7 @@
     
 
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
